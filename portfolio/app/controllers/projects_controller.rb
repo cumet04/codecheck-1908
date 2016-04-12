@@ -4,37 +4,32 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
   end
 
   def show
-    @project = Project.find(params[:id])
+    project = Project.find_by(id: params[:id])
+    return head :not_found unless project
+    return render json: project
   end
 
   def create
-    @project = Project.new(project_params)
-    if @project.save
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @project
-    else
-      render 'new'
-    end
+    project = Project.new(project_params)
+    return head :bad_request           unless project.valid?
+    return head :internal_server_error unless project.save
+    return render json: project
   end
 
   def destroy
     project = Project.find_by(id: params[:id])
-    if !project
-      return head 404
-    end
+    return head :not_found unless project
 
     project.destroy
-    flash[:success] = "Project deleted"
-    redirect_to projects_url
+    return render json: {msg: "Project" + params[:id] + " was deleted"}
   end
 
   private
 
     def project_params
-      params.require(:project).permit(:url, :title, :description)
+      params.permit(:url, :title, :description)
     end
 end
