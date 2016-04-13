@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
 # web-view functions
   def new
+    @project = Project.new
   end
 
   def index
@@ -18,6 +19,18 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    raw = params.require(:project).
+            permit(:url, :title, :description, :thumb)
+    input = {}
+    input[:title] = raw[:title]
+    input[:url] = raw[:url]
+    input[:description] = raw[:description]
+    input[:thumb] = raw[:thumb] ? raw[:thumb].read : nil
+    project = Project.new(input)
+    return head :bad_request           unless project.valid?
+    return head :internal_server_error unless project.save
+    # FIXME: thumb要素がjsonに出力できないのでコケる
+    return render json: project
   end
 
   def destroy
@@ -35,7 +48,8 @@ class ProjectsController < ApplicationController
   end
 
   def api_create
-    project = Project.new(project_params)
+    project = Project.new(params.
+                permit(:url, :title, :description, :thumb))
     return head :bad_request           unless project.valid?
     return head :internal_server_error unless project.save
     return render json: project
@@ -49,9 +63,4 @@ class ProjectsController < ApplicationController
     return render json: {msg: "Project" + params[:id] + " was deleted"}
   end
 
-  private
-
-    def project_params
-      params.permit(:url, :title, :description)
-    end
 end
