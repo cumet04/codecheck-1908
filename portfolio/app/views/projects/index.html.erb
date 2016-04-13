@@ -1,7 +1,9 @@
 <article>
   <% @projects.each do |item| %>
     <section class="project_info">
-      <%= image_tag(thumb_project_path(item), :class => "thumb") %>
+      <a class="thumb" href="<%=projects_path + '/' + item.id.to_s %>" >
+        <%= image_tag(thumb_project_path(item), :class => "thumb") %>
+      </a>
       <div class="title"> <%= item.title %> </div>
       <div class="description"> <%= item.description %> </div>
       <div class="url">
