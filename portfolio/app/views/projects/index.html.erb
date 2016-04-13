@@ -7,6 +7,11 @@
       <div class="url">
         <a href=<%= item.url %> ><%= item.url %> </a>
       </div>
+      <div class="delete">
+        <!-- FIXME: path -->
+        <%= link_to "delete", projects_path + '/' + item.id.to_s,
+                  method: :delete, data: { confirm: "You sure?" } %>
+      </div>
     </section>
   <% end %>
 </article>

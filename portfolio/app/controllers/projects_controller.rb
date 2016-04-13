@@ -34,6 +34,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    Project.find(params[:id]).destroy
+    redirect_to projects_url
   end
 
 # API functions
