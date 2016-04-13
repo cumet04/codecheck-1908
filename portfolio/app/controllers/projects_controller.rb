@@ -13,23 +13,12 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def thumb
-    @project = Project.find(params[:id])
-    send_data @project.thumb, :type => 'image/jpeg', :disposition => 'inline'
-  end
-
   def create
-    raw = params.require(:project).
+    input = params.require(:project).
             permit(:url, :title, :description, :thumb)
-    input = {}
-    input[:title] = raw[:title]
-    input[:url] = raw[:url]
-    input[:description] = raw[:description]
-    input[:thumb] = raw[:thumb] ? raw[:thumb].read : nil
     project = Project.new(input)
     return head :bad_request           unless project.valid?
     return head :internal_server_error unless project.save
-    # FIXME: thumb要素がjsonに出力できないのでコケる
     return render json: project
   end
 
@@ -40,6 +29,16 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+  end
+
+  def update
+    # 要素を空で実行すると，その要素は更新されない
+    # titleなど，入力必須の項目を空にしても普通に処理は成功する
+    project = Project.find(params[:id])
+    input = params.require(:project).
+            permit(:url, :title, :description, :thumb)
+    project.update(input)
+    redirect_to project_path(project)
   end
 
 # API functions
@@ -67,6 +66,14 @@ class ProjectsController < ApplicationController
 
     project.destroy
     return render json: {msg: "Project" + params[:id] + " was deleted"}
+  end
+
+  def api_update
+    project = Project.find_by(id: params[:id])
+    return head :not_found unless project
+    input = params.permit(:url, :title, :description, :thumb)
+    project.update(input)
+    return render json: project
   end
 
 end

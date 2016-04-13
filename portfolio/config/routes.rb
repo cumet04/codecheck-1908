@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   post   'api/projects'     => 'projects#api_create'
   get    'api/projects/:id' => 'projects#api_show'
   delete 'api/projects/:id' => 'projects#api_destroy'
+  put    'api/projects/:id' => 'projects#api_update'
 end
