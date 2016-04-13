@@ -1,0 +1,11 @@
+<article>
+  <section class="project_info">
+    <%= link_to project.title, projects_path + '/' + project.id.to_s %>
+    <div class="description"> <%= project.description %> </div>
+    <%= link_to project.url, project.url, class: "url" %>
+    <!-- FIXME: path -->
+    <%= link_to "delete", projects_path + '/' + project.id.to_s,
+                        method: :delete, class: "delete", 
+                        data: { confirm: "You sure?" } %>
+  </section>
+</article>

@@ -1,19 +1,5 @@
 <article>
-  <% @projects.each do |item| %>
-    <section class="project_info">
-      <a class="thumb" href="<%=projects_path + '/' + item.id.to_s %>" >
-        <%= image_tag(thumb_project_path(item), :class => "thumb") %>
-      </a>
-      <div class="title"> <%= item.title %> </div>
-      <div class="description"> <%= item.description %> </div>
-      <div class="url">
-        <a href=<%= item.url %> ><%= item.url %> </a>
-      </div>
-      <div class="delete">
-        <!-- FIXME: path -->
-        <%= link_to "delete", projects_path + '/' + item.id.to_s,
-                  method: :delete, data: { confirm: "You sure?" } %>
-      </div>
-    </section>
+  <% @projects.each do |project| %>
+    <%= render partial: "shared/project", locals: {project: project} %>
   <% end %>
 </article>

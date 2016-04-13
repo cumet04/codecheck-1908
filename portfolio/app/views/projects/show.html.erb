@@ -1,15 +1,1 @@
-<article>
-  <section class="project_info">
-    <%= image_tag(thumb_project_path(@project), :class => "thumb") %>
-    <div class="title"> <%= @project.title %> </div>
-    <div class="description"> <%= @project.description %> </div>
-    <div class="url">
-      <a href=<%= @project.url %> > <%= @project.url %> </a>
-    </div>
-    <div class="delete">
-      <!-- FIXME: path -->
-      <%= link_to "delete", projects_path + '/' + @project.id.to_s,
-                method: :delete, data: { confirm: "You sure?" } %>
-    </div>
-  </section>
-</article>
+<%= render partial: "shared/project", locals: {project: @project} %>
