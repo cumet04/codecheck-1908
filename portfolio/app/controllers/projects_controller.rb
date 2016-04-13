@@ -38,6 +38,10 @@ class ProjectsController < ApplicationController
     redirect_to projects_url
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
 # API functions
   def api_index
     render json: Project.all
