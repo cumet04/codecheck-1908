@@ -1,9 +1,10 @@
-<div class="row">
-  <aside class="col-md-4">
-    <section class="project_info">
-      <h1> url: <%= @project.url %> </h1>
-      <h1> title: <%= @project.title %> </h1>
-      <h1> description: <%= @project.description %> </h1>
-    </section>
-  </aside>
-</div>
+<article>
+  <section class="project_info">
+    <%= image_tag(thumb_project_path(@project), :class => "thumb") %>
+    <div class="title"> <%= @project.title %> </div>
+    <div class="description"> <%= @project.description %> </div>
+    <div class="url">
+      <a href=<%= @project.url %> > <%= @project.url %> </a>
+    </div>
+  </section>
+</article>

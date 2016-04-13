@@ -5,10 +5,16 @@ class ProjectsController < ApplicationController
   end
 
   def index
+    @projects = Project.all
   end
 
   def show
     @project = Project.find(params[:id])
+  end
+
+  def thumb
+    @project = Project.find(params[:id])
+    send_data @project.thumb, :type => 'image/jpeg', :disposition => 'inline'
   end
 
   def create

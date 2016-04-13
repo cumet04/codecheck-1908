@@ -1,2 +1,12 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<article>
+  <% @projects.each do |item| %>
+    <section class="project_info">
+      <%= image_tag(thumb_project_path(item), :class => "thumb") %>
+      <div class="title"> <%= item.title %> </div>
+      <div class="description"> <%= item.description %> </div>
+      <div class="url">
+        <a href=<%= item.url %> ><%= item.url %> </a>
+      </div>
+    </section>
+  <% end %>
+</article>

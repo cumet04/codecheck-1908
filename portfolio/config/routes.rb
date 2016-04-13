@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   # for web-view
   resources :projects
+  resources :projects do
+    member do
+      get 'thumb'
+    end
+  end
 
   # for api
   get    'api/projects'     => 'projects#api_index'
