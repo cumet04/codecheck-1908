@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   root 'application#hello'
 
   # for thumb
-  get    'thumb/index'
-  get    'thumb/show'
-  post   'thumb/create'
-  delete 'thumb/destroy'
+  get    'api/thumb'     => 'thumb#index'
+  post   'api/thumb'     => 'thumb#create'
+  get    'api/thumb/:id' => 'thumb#show'
+  delete 'api/thumb/:id' => 'thumb#destroy'
 
   # for web-view
   resources :projects
