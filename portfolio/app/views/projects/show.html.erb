@@ -1,22 +1,34 @@
-<article>
-  <section class="project_info container">
-    <div class="row">
-      <div class="thumb col-md-3">
-        <%= link_to image_tag(thumb_path(@project.thumb_id)),
-                  project_path(@project) %>
-      </div>
-      <div class="text_info col-md-9">
-        <h1 class="page-header"> <%= @project.title %> </h1>
-        <%= link_to @project.url, @project.url, class: "url" %>
-        <%= text_area_tag nil, @project.description, :readonly => true,
-                :size => "60x10" %>
-      </div>
-    </div>
-  </section>
-  <div class="modify">
-    <%= link_to "delete", project_path(@project),
-                    method: :delete, class: "delete", 
-                    data: { confirm: "You sure?" } %>
-    <%= link_to "edit", edit_project_path(@project), class: "edit" %>
+<article class="project-detail">
+
+<section class="title container">
+<div class="row">
+
+  <div class="col-md-3">
+    <%= link_to image_tag(thumb_path(@project.thumb_id)), project_path(@project) %>
   </div>
+
+  <div class="col-md-9">
+    <h1 class="page-header"> <%= @project.title %> </h1>
+    <%= link_to @project.url, @project.url, class: "url" %>
+    <div class="modify">
+      <%= link_to "delete", project_path(@project),
+                      method: :delete, class: "delete", 
+                      data: { confirm: "You sure?" } %>
+      <%= link_to "edit", edit_project_path(@project), class: "edit" %>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+
+<section class="contents">
+  <div class="page-header"><h3>description</h3></div>
+
+  <div class="description">
+    <%= @project.description %>
+  </div>
+</section>
+
 </article>

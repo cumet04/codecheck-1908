@@ -3,6 +3,34 @@
   They will automatically be included in application.css.
 */
 
+.title {
+    height: 200px;
+    > .row {
+        // ここを指定しないと直下のcol要素のheight:100%が効かない(autoになる)
+        height: 100%;
+        > div { height: 100%; }
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .url {
+        font-size: large;
+        float: right;
+    }
+
+    .modify {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+
+
+
 .project_info {
     border: solid;
     border-width: 1px;
@@ -30,17 +58,4 @@
 .modify > * {
     float: right;
     margin-left: 5px;
-}
-
-.thumb_big {
-    border: solid;
-    border-width: 1px;
-    width: 400px;
-    height: 400px;
-}
-.thumb_small {
-    border: solid;
-    border-width: 1px;
-    width: 200px;
-    height: 200px;
 }
