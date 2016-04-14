@@ -1,5 +1,8 @@
 class ThumbController < ApplicationController
   def index
+    thumbs = Thumb.all
+    id_list = thumbs.map {|t| t[:id]}
+    return render json: {thumbs: id_list}
   end
 
   def show
