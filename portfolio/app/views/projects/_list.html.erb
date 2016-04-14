@@ -9,16 +9,8 @@
         <h1 class="page-header"> <%= project.title %> </h1>
         <%= link_to project.url, project.url, class: "url" %>
         <%= text_area_tag nil, project.description, :readonly => true,
-                :size => detail ? "60x10" : "60x5" %>
+                :size => "60x5" %>
       </div>
     </div>
   </section>
-  <% if detail %>
-    <div class="modify">
-      <%= link_to "delete", project_path(project),
-                        method: :delete, class: "delete", 
-                        data: { confirm: "You sure?" } %>
-      <%= link_to "edit", edit_project_path(project), class: "edit" %>
-    </div>
-  <% end %>
 </article>

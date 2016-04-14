@@ -1,6 +1,19 @@
-<article>
+<div class="projects-view">
+
+<section class="header">
+<h1>project list<h1>
+</section>
+
+
+<article class="view container">
   <% @projects.each do |project| %>
-    <%= render partial: "shared/project", locals: {
-            project: project, detail: false} %>
+    <%= render partial: "projects/list", locals: { project: project } %>
   <% end %>
 </article>
+
+
+<section class="footer">
+foot
+</section>
+
+</div>
