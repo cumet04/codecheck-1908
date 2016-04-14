@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'application#hello'
+  root 'static_pages#home'
+  get 'help'  => 'static_pages#help'
+  get 'about' => 'static_pages#about'
 
   resources :thumb, :path => 'api/thumbs',
             only: [:index, :create, :show, :destroy]
