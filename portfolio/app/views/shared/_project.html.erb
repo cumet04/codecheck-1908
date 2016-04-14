@@ -1,13 +1,13 @@
 <article>
   <section class="project_info">
+    <%= image_tag thumb_path(project.thumb_id) %>
     <%= link_to project.title, projects_path + '/' + project.id.to_s %>
     <%= text_area_tag nil, project.description, :readonly => true,
             :size => detail ? "60x10" : "60x5" %>
     <%= link_to project.url, project.url, class: "url" %>
     <% if detail %>
       <br>
-      <!-- FIXME: path -->
-      <%= link_to "delete", projects_path + '/' + project.id.to_s,
+      <%= link_to "delete", project_path(project),
                         method: :delete, class: "delete", 
                         data: { confirm: "You sure?" } %>
       <%= link_to "edit", edit_project_path(project), class: "edit" %>
