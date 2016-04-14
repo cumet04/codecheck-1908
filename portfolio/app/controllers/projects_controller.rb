@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
       return render 'new'
     end
     flash[:success] = "The project is created."
-    return render json: project
+    return redirect_to project
   end
 
   def destroy
