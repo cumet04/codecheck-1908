@@ -18,5 +18,10 @@ class ThumbController < ApplicationController
   end
 
   def destroy
+    file = Thumb.find_by(id: params[:id])
+    return head :not_found unless file
+
+    file.destroy
+    return render json: {msg: "Thumb" + params[:id] + " was deleted"}
   end
 end
