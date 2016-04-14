@@ -1,16 +1,20 @@
 <article>
   <section class="project_info">
-    <%= image_tag thumb_path(project.thumb_id) %>
-    <%= link_to project.title, projects_path + '/' + project.id.to_s %>
-    <%= text_area_tag nil, project.description, :readonly => true,
-            :size => detail ? "60x10" : "60x5" %>
-    <%= link_to project.url, project.url, class: "url" %>
-    <% if detail %>
-      <br>
-      <%= link_to "delete", project_path(project),
-                        method: :delete, class: "delete", 
-                        data: { confirm: "You sure?" } %>
-      <%= link_to "edit", edit_project_path(project), class: "edit" %>
-    <% end %>
+    <%= link_to image_tag(thumb_path(project.thumb_id),
+                :class => detail ? "thumb_big" : "thumb_small"),
+                project_path(project) %>
+    <div class="text_info">
+      <h1 class="title"> <%= project.title %> </h1>
+      <%= text_area_tag nil, project.description, :readonly => true,
+              :size => detail ? "60x10" : "60x5" %>
+      <%= link_to project.url, project.url, class: "url" %>
+      <% if detail %>
+        <br>
+        <%= link_to "delete", project_path(project),
+                          method: :delete, class: "delete", 
+                          data: { confirm: "You sure?" } %>
+        <%= link_to "edit", edit_project_path(project), class: "edit" %>
+      <% end %>
+    </div>
   </section>
 </article>
