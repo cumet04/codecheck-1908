@@ -3,6 +3,8 @@ class ThumbController < ApplicationController
   end
 
   def show
+    thumb = Thumb.find(params[:id])
+    send_data thumb.file, :type => 'image/jpeg', :disposition => 'inline'
   end
 
   def create
