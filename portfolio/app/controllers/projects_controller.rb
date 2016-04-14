@@ -14,9 +14,20 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    input = params.require(:project).
-            permit(:url, :title, :description, :thumb)
-    project = Project.new(input)
+    input = params.require(:project).permit(:url, :title, :description, :thumb)
+
+    # thumbを登録する
+    return head :bad_request unless input[:thumb]
+    thumb = Thumb.create({file: input[:thumb].read})
+
+    project = Project.new({
+                title: input[:title],
+                url: input[:url],
+                description: input[:description],
+                thumb_id: thumb[:id]
+            })
+
+    # FIXME: 戻り値処理がwebviewのそれになっていない...？
     return head :bad_request           unless project.valid?
     return head :internal_server_error unless project.save
     return render json: project
