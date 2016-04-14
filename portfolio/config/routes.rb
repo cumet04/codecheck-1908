@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+
   root 'application#hello'
 
+  # for thumb
+  get    'thumb/index'
+  get    'thumb/show'
+  post   'thumb/create'
+  delete 'thumb/destroy'
+
   # for web-view
-  # get    'projects'     => 'projects#index'
-  # post   'projects'     => 'projects#create'
-  # get    'projects/:id' => 'projects#show'
-  # delete 'projects/:id' => 'projects#destroy'
   resources :projects
 
   # for api
