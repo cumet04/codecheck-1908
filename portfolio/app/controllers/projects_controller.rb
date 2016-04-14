@@ -17,9 +17,14 @@ class ProjectsController < ApplicationController
     input = params.require(:project).permit(:url, :title, :description, :thumb)
 
     # thumbを登録する
-    return head :bad_request unless input[:thumb]
+    unless input[:thumb]
+      flash.now[:danger] = "Thumbnail is not specified"
+      return render 'new'
+    end
     thumb = Thumb.create({file: input[:thumb].read})
 
+    # TODO: 例外処理がうまくいっていない
+    # 下のunlessでパラメータエラーを補足すべきだが、Project.newの時点で例外を吐く
     project = Project.new({
                 title: input[:title],
                 url: input[:url],
@@ -27,9 +32,15 @@ class ProjectsController < ApplicationController
                 thumb_id: thumb[:id]
             })
 
-    # FIXME: 戻り値処理がwebviewのそれになっていない...？
-    return head :bad_request           unless project.valid?
-    return head :internal_server_error unless project.save
+    unless project.valid?
+      flash.now[:danger] = "Invalid params"
+      return render 'new'
+    end
+    unless project.save
+      flash.now[:danger] = "Failed to save the project"
+      return render 'new'
+    end
+    flash[:success] = "The project is created."
     return render json: project
   end
 
