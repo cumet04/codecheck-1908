@@ -23,6 +23,15 @@ def load_projects(filename):
 
     return data["projects"]
 
+def fetch_thumb(url):
+    tmp_file = '/tmp/__tmp_thumb.jpg'
+    ep = 'http://capture.heartrails.com/400x300/border?{0}'.format(url)
+    res = requests.get(ep)
+    f = open(tmp_file, 'wb')
+    f.write(res.content)
+    f.close()
+    return tmp_file
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -41,6 +50,10 @@ if __name__ == "__main__":
             'url': item['url'],
             'description': item['description'],
         }
+
+        # fetch thumb file
+        if 'thumb' not in item:
+            item['thumb'] = fetch_thumb(item['url'])
 
         # open thumb file
         thumb_file = {
