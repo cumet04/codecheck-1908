@@ -75,8 +75,19 @@ class ProjectsController < ApplicationController
   end
 
   def api_create
-    project = Project.new(params.
-                permit(:url, :title, :description, :thumb))
+    input = params.permit(:url, :title, :description, :thumb)
+
+    # thumbを登録する
+    return head :bad_request unless input[:thumb]
+    thumb = Thumb.create({file: input[:thumb].read})
+
+    project = Project.new({
+                              title: input[:title],
+                              url: input[:url],
+                              description: input[:description],
+                              thumb_id: thumb[:id]
+                          })
+
     return head :bad_request           unless project.valid?
     return head :internal_server_error unless project.save
     return render json: project
@@ -91,6 +102,7 @@ class ProjectsController < ApplicationController
   end
 
   def api_update
+    # FIXME: thumbの扱いが考慮されていない
     project = Project.find_by(id: params[:id])
     return head :not_found unless project
     input = params.permit(:url, :title, :description, :thumb)
