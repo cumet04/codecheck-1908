@@ -15,16 +15,3 @@
 //= require turbolinks
 //= require_tree .
 
-$(".project_link").each(function() {
-    var pid = $(this).attr("data-project-id");
-    $.ajax({
-        type: 'GET',
-      // TODO: aaa
-        url: '<%= %>',
-        contentType:'image/png',
-        data: {src: this.result},
-        success: function(xml) {
-            $('#icon-id').text(xml.icon);
-        }
-    });
-});
