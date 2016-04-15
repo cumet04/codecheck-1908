@@ -6,10 +6,13 @@
                   project_path(project) %>
       </div>
       <div class="text_info col-md-9">
-        <h1 class="page-header"> <%= project.title %> </h1>
-        <%= link_to project.url, project.url, class: "url" %>
-        <%= text_area_tag nil, project.description, :readonly => true,
-                :size => "60x5" %>
+        <div class="title">
+          <h1 class="page-header"> <%= project.title %> </h1>
+          <%= link_to project.url, project.url, class: "url" %>
+        </div>
+        <div class="description">
+          <%= project.description %>
+        </div>
       </div>
     </div>
   </section>

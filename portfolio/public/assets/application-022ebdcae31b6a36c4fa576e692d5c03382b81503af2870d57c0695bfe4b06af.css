@@ -27,9 +27,9 @@
   .project_info .thumb img {
     width: 100%;
     height: 100%; }
-  .project_info .text_info h1 {
+  .project_info .title h1 {
     font-size: 30px; }
-  .project_info .text_info .url {
+  .project_info .title .url {
     float: right;
     margin-top: -15px;
     margin-bottom: 10px; }

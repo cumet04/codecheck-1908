@@ -1,20 +1,23 @@
 <article class="project-detail">
 
-<section class="title container">
+<section class="header container">
 <div class="row">
 
-  <div class="col-md-3">
+  <div class="col-md-3 thumb">
     <%= link_to image_tag(thumb_path(@project.thumb_id)), project_path(@project) %>
   </div>
 
-  <div class="col-md-9">
-    <h1 class="page-header"> <%= @project.title %> </h1>
-    <%= link_to @project.url, @project.url, class: "url" %>
+  <div class="col-md-9 text_info">
+    <div class="title">
+      <h1 class="page-header"> <%= @project.title %> </h1>
+      <%= link_to @project.url, @project.url, class: "url" %>
+    </div>
+    <div class="padding"></div>
     <div class="modify">
+      <%= link_to "edit", edit_project_path(@project), class: "edit" %>
       <%= link_to "delete", project_path(@project),
                       method: :delete, class: "delete", 
                       data: { confirm: "You sure?" } %>
-      <%= link_to "edit", edit_project_path(@project), class: "edit" %>
     </div>
   </div>
 
