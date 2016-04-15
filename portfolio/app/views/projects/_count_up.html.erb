@@ -1,0 +1,13 @@
+<%= javascript_tag do %>
+
+$(".project_link").each(function() {
+  var pid = $(this).attr("data-project-id");
+  $(this).click(function() {
+    $.ajax({
+        type: 'GET',
+        url: '<%= api_projects_path %>/' + pid + '/count_up'
+    });
+  });
+});
+
+<% end %>
