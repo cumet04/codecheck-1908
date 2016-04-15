@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    # TODO: api_createと共通化を図ったほうがいい
     input = params.require(:project).permit(:url, :title, :description, :thumb)
 
     # thumbを登録する
@@ -114,4 +115,13 @@ class ProjectsController < ApplicationController
     return render json: project
   end
 
+  def api_count_up
+    project = Project.find_by(id: params[:id])
+    return head :not_found unless project
+    project.update({link_count: project[:link_count] + 1})
+    render json: project
+
+    # api_updateが差分更新する仕様で確定なのであれば、このAPIを個別実装せずに
+    # updateで代用してもいいかもしれない
+  end
 end

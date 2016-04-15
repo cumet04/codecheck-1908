@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get    'api/projects/:id' => 'projects#api_show'
   delete 'api/projects/:id' => 'projects#api_destroy'
   put    'api/projects/:id' => 'projects#api_update'
+  get    'api/projects/:id/count_up' => 'projects#api_count_up'
 end
