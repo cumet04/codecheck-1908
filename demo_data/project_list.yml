@@ -1,7 +1,6 @@
 projects:
   - title: rails-hello
     url: https://fathomless-castle-41210.herokuapp.com/
-    thumb: notfound.jpg
     description: >
       コンピュータープログラミングにおける古来の伝統に従い、最初に作るアプリケーションは
       「hello, world」を表示するプログラムにしましょう。具体的には、
@@ -10,7 +9,6 @@ projects:
 
   - title: rails-toy
     url: https://ancient-scrubland-48556.herokuapp.com/
-    thumb: notfound.jpg
     description: >
       Toyアプリケーションは、後に作成するサンプルアプリケーションと同様、
       ユーザーと、それに関連しているマイクロポストから成り立っています。
@@ -24,7 +22,6 @@ projects:
 
   - title: rails-sample
     url: https://hidden-escarpment-90033.herokuapp.com/
-    thumb: notfound.jpg
     description: >
       本章から、本格的なサンプルアプリケーションの開発を進めていきます。
       残りのチュートリアルでは、このアプリケーションを例題として扱って学習していくことになります。
@@ -36,7 +33,6 @@ projects:
 
   - title: codecheck-portfolio
     url: https://portfolio-inomoto.herokuapp.com/
-    thumb: notfound.jpg
     description: >
       # ポートフォリオを作ろう！（API実装）
       ポートフォリオに載せるプロジェクトの管理をするための Web API を実装しよう！
@@ -94,3 +90,24 @@ projects:
       42 passing (16s)
       6 failing
       ```
+
+  - title: qiita
+    url: https://qiita.com/
+    description: >
+      Qiita is a technical knowledge sharing and collaboration platform for programmers.
+
+  - title: github
+    url: https://github.com/
+    description: >
+      GitHub（ギットハブ）はソフトウェア開発プロジェクトのための共有ウェブサービスであり、
+      Gitバージョン管理システムを使用する。Ruby on RailsおよびErlangで記述されており、
+      GitHub社によって保守されている。主な開発者はChris Wanstrath、PJ Hyett、Tom Preston-Wernerである。
+      GitHub商用プランおよびオープンソースプロジェクト向けの無料アカウントを提供している。
+      2009年のユーザー調査によると、GitHubは最もポピュラーなGitホスティングサイトとなった[3]。
+
+  - title: google
+    url: https://www.google.co.jp/
+    description: >
+      Google Inc.（グーグル）は、検索エンジン、クラウドコンピューティング、ソフトウェア、
+      オンライン広告といったインターネット関連のサービスと製品を提供するアメリカ合衆国の多国籍企業である。
+      収益の多くをアドワーズ（AdWords）と呼ばれるオンライン広告から得ている。
