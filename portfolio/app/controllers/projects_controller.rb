@@ -29,8 +29,9 @@ class ProjectsController < ApplicationController
                 title: input[:title],
                 url: input[:url],
                 description: input[:description],
-                thumb_id: thumb[:id]
-            })
+                thumb_id: thumb[:id],
+                link_count: 0
+              })
 
     unless project.valid?
       flash.now[:danger] = "Invalid params"
@@ -54,8 +55,10 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    # FIXME: thumbの扱いが考慮されていない
     # 要素を空で実行すると，その要素は更新されない
     # titleなど，入力必須の項目を空にしても普通に処理は成功する
+    # MEMO: replace的な処理にする場合は、idの他にlink_countも引き継ぐ必要あり
     project = Project.find(params[:id])
     input = params.require(:project).
             permit(:url, :title, :description, :thumb)
@@ -82,11 +85,12 @@ class ProjectsController < ApplicationController
     thumb = Thumb.create({file: input[:thumb].read})
 
     project = Project.new({
-                              title: input[:title],
-                              url: input[:url],
-                              description: input[:description],
-                              thumb_id: thumb[:id]
-                          })
+                title: input[:title],
+                url: input[:url],
+                description: input[:description],
+                thumb_id: thumb[:id],
+                link_count: 0
+              })
 
     return head :bad_request           unless project.valid?
     return head :internal_server_error unless project.save
