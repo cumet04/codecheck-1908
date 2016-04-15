@@ -116,6 +116,7 @@ class ProjectsController < ApplicationController
   end
 
   def api_count_up
+    # FIXME: カウントアップでupdated_atが更新されるのイケてない
     project = Project.find_by(id: params[:id])
     return head :not_found unless project
     project.update({link_count: project[:link_count] + 1})
