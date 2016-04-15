@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415035518) do
+ActiveRecord::Schema.define(version: 20160415060923) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "url"
