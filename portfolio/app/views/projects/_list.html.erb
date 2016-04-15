@@ -1,12 +1,14 @@
 <article>
   <section class="project_info container">
     <div class="row">
+
       <div class="thumb col-md-3">
-        <%= link_to image_tag(thumb_path(project.thumb_id)),
-                  project_path(project) %>
+        <%= link_to image_tag(thumb_path(project.thumb_id)), project_path(project) %>
       </div>
+
       <div class="text_info col-md-9">
         <div class="title">
+          <span class="count"><%= project.link_count %> views</span>
           <h1 class="page-header"> <%= project.title %> </h1>
           <%= link_to project.url, project.url, class: "project_link",
                 data: {project_id: project.id} %>
