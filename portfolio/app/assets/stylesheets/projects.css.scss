@@ -58,7 +58,7 @@
   background-color: #f9f9f9;
   margin-bottom: 20px;
   padding: 15px;
-  height: 300px;
+  height: 200px;
 
   .text_info > .description {
     flex-grow: 1;
@@ -66,6 +66,7 @@
     border-width: 1px;
     border-color: lightgray;
     padding: 5px;
+    overflow: hidden;
   }
 }
 
