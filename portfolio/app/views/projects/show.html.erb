@@ -10,7 +10,8 @@
   <div class="col-md-9 text_info">
     <div class="title">
       <h1 class="page-header"> <%= @project.title %> </h1>
-      <%= link_to @project.url, @project.url, class: "project_link" %>
+      <%= link_to @project.url, @project.url, class: "project_link",
+          data: {project_id: @project.id} %>
     </div>
     <div class="padding"></div>
     <div class="modify">
